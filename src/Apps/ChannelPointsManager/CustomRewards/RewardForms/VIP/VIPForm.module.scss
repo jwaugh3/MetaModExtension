@@ -1,0 +1,93 @@
+/* CONTAINER MANAGEMENT */
+.formContainer {
+	width: 100%;
+	height: auto;
+	overflow-x: hidden;
+	padding-bottom: 30px;
+}
+
+.formContainer::-webkit-scrollbar {
+	width: 8px;
+}
+
+.formContainer::-webkit-scrollbar-thumb {
+	background-color: #222222;
+	border-radius: 8px;
+}
+
+.form {
+	margin: 18px;
+}
+
+.formSpacer {
+	height: 13px;
+	width: 100%;
+}
+
+/* GENERAL FORM */
+label {
+	color: white;
+}
+
+input[type=text] {
+	background-color: #6d6c6d;
+	height: 24px;
+	color: white;
+	border-radius: 4px;
+	border: none;
+}
+
+.inputBox {
+	width: 230px;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* NAME */
+label[id=charCount] {
+	color: rgb(175, 174, 174);
+	margin-left: 5px;
+}
+
+.saveButton {
+	width: 94px;
+	height: 26px;
+	margin: 5px;
+	margin-top: 8px;
+	text-align: center;
+	float: right;
+	color: white;
+	background-color: #05a1e5;
+	border: none;
+	border-radius: 6px;
+	box-shadow: 0px 2px 5px black;
+	font-size: 14px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.deleteButton {
+	width: 94px;
+	height: 26px;
+	margin: 5px;
+	margin-top: 8px;
+	text-align: center;
+	float: right;
+	color: white;
+	background-color: #ff9e9e;
+	border: none;
+	border-radius: 6px;
+	box-shadow: 0px 2px 5px black;
+	font-size: 14px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.alert {
+	color: #d48b8b;
+	text-align: center;
+	text-shadow: 1px 1px 1px black;
+	height: 48px;
+	display: flex;
+	justify-content: center;
+	vertical-align: middle;
+}

@@ -1,0 +1,87 @@
+#modal-window {
+	position: absolute;
+	width: 99%;
+	top: 0;
+	z-index: 99999;
+	font-family: sans-serif;
+}
+
+.modal-window {
+	top: 0;
+	left: 0;
+	will-change: transform;
+	margin-top: 2em;
+	position: absolute;
+	background: #18181b;
+	min-width: 150px;
+	height: initial;
+	border-radius: 3px;
+	box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.556) !important;
+	z-index: 9999;
+	border: 1px solid #05a1e5;
+}
+
+/* modal draggable top bar - includes exit button */
+.modal-handle {
+	/* position: absolute; */
+	cursor: move;
+	height: 25px;
+	border-radius: 3px 3px 0px 0px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	background-color: #0e0e10;
+}
+
+.handle-logo-container {
+	display: flex;
+	align-items: center;
+	width: 84px;
+}
+
+.handle-logo {
+	width: 20px;
+	height: 18px;
+	margin: auto;
+	user-select: none;
+	-webkit-user-drag: none;
+}
+
+.handle-title {
+	font-size: 13px;
+	margin: auto;
+	color: white;
+	user-select: none;
+	-webkit-user-drag: none;
+	padding-right: 8px;
+}
+
+/* modal clost button */
+.modal-close-button {
+	cursor: pointer;
+	width: 18px;
+	height: 18px;
+}
+
+/* modal main page */
+.modal-content {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	color: white;
+	font-size: 14px;
+	line-height: 24px;
+	height: 598px;
+	min-height: 450;
+	width: 408px;
+	min-width: 408px;
+	resize: both;
+	overflow: auto;
+}
+
+.modal-body {
+	display: flex;
+	flex-direction: column;
+}

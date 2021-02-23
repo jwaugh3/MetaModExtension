@@ -1,0 +1,32 @@
+.mainContainer {
+	width: 100%;
+	height: 100%;
+	background-image: url('../../resources/loginScreen.png');
+	background-size: cover;
+	background-position: 0%;
+	padding-left: 0px;
+	position: relative;
+}
+
+.loginLogo {
+	margin: auto;
+	position: absolute;
+	left: 50%;
+	top: 10%;
+	transform: translate(-50%);
+}
+
+.loginButton {
+	border: none;
+	background-color: rgba(255, 255, 255, 0);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%);
+	cursor: pointer;
+	margin: none;
+}
+
+.loginImage {
+	margin: auto;
+}

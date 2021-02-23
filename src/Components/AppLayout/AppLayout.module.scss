@@ -1,0 +1,36 @@
+.layoutContainer {
+    width: 100%;
+    height: 100%;
+    margin-top: 0px;
+    padding-top: 0px;
+    position: relative;
+}
+
+.headerContainer {
+    position: relative;
+    width: 100%;
+    height: 48px;
+    margin: auto;
+}
+
+.header {
+    font-size: 26px;
+    padding: 12px;
+    margin: 0px;
+    display: flex;
+    justify-content: left;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+}
+
+.appContentContainer {
+    width: 100%;
+    height: calc(100% - 54px)
+}
+
+.appContent {
+    height: calc(100% - 6px);
+    margin: 6px;
+    background-color: #484B53;
+    border-radius: 5px;
+}

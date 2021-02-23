@@ -1,0 +1,61 @@
+.channelPointsModule {
+	display: flex;
+	grid-row-start: 2;
+	grid-row-end: 3;
+	height: 90%;
+}
+
+.mainTitle {
+	font-size: 26px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 300;
+	display: inline-block;
+	margin: 10px;
+	margin-left: 4px;
+}
+
+.createButton {
+	position: relative;
+	width: 40px;
+	height: 40px;
+	color: white;
+	background-color: #05a1e5;
+	border: none;
+	border-radius: 8px;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+	margin: auto;
+	margin-top: 2px;
+	margin-right: 8px;
+	font-size: 20px;
+	float: right;
+	position: relative;
+	text-align: center !important;
+}
+
+.cancelButton {
+	position: relative;
+	width: 40px;
+	height: 40px;
+	color: white;
+	background-color: #d48b8b;
+	border: none;
+	border-radius: 8px;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+	margin: auto;
+	margin-top: 2px;
+	margin-right: 8px;
+	font-size: 20px;
+	float: right;
+	text-align: center !important;
+}
+
+.dropdown {
+	position: absolute;
+	right: 12px;
+	width: 128px;
+	height: 66px;
+	background-color: #6d6c6d;
+	border-radius: 4px;
+	display: grid;
+	grid-template-rows: 50% 50%;
+}

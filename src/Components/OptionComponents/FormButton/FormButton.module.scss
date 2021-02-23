@@ -1,0 +1,23 @@
+.formButton {
+	min-width: 90px;
+	height: 26px;
+	margin: 5px;
+	margin-top: 8px;
+	text-align: center;
+	float: right;
+	color: rgb(58, 58, 58);
+	border: none;
+	border-radius: 6px;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+	font-size: 14px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.text {
+	font-size: 14px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 600;
+	color: #222222;
+	margin: auto;
+}

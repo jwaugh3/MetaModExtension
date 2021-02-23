@@ -1,0 +1,160 @@
+/* CONTAINER MANAGEMENT */
+.formContainer {
+	width: 100%;
+	overflow-x: hidden;
+	// overflow-y: auto;
+	height: auto;
+	padding-bottom: 30px;
+}
+
+// .formContainer::-webkit-scrollbar {
+// 	width: 8px;
+// }
+
+// .formContainer::-webkit-scrollbar-thumb {
+// 	background-color: #222222;
+// 	border-radius: 8px;
+// }
+
+.form {
+	margin: 18px;
+}
+
+.formGrid {
+	width: 100%;
+	max-width: 260px;
+	height: 48px;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+.formSpacer {
+	height: 13px;
+	width: 100%;
+}
+
+/* HEADER */
+.headerContainer {
+	height: 32px;
+	width: 330px;
+	margin: 12px;
+	margin-top: 0px;
+	border-bottom: white 1px solid;
+}
+
+.headerText {
+	color: white;
+	height: 28px;
+	margin: 3px;
+	margin-top: 5px;
+	font-weight: bold;
+}
+
+/* GENERAL FORM */
+label {
+	color: white;
+}
+
+input[type=text] {
+	background-color: #6d6c6d;
+	height: 24px;
+	color: white;
+	border-radius: 4px;
+	border: none;
+}
+
+.inputBox {
+	width: 230px;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* NAME */
+label[id=charCount] {
+	color: rgb(175, 174, 174);
+	margin-left: 5px;
+}
+
+// TOGGLE SWITCHES
+.userSelect {
+	cursor: pointer;
+	user-select: none;
+}
+
+// COOLDOWN CONTAINER
+.cooldownContainer {
+	max-width: 270px;
+	padding: 15px;
+
+	background-color: #484b53;
+	border-radius: 10px;
+}
+
+.cooldownInput {
+	width: 140px;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.unit {
+	font-size: 14px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 200;
+	display: inline-block;
+	line-height: 100%;
+	height: 14px;
+	margin-top: 10px;
+	margin-left: 4px;
+}
+
+.optionGrid {
+	width: 100%;
+	height: 30px;
+	display: flex;
+}
+
+.cooldownOption {
+	margin-top: 10px;
+}
+
+.saveButton {
+	width: 94px;
+	height: 26px;
+	margin: 5px;
+	margin-top: 8px;
+	text-align: center;
+	float: right;
+	color: white;
+	background-color: #05a1e5;
+	border: none;
+	border-radius: 6px;
+	box-shadow: 0px 2px 5px black;
+	font-size: 14px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.deleteButton {
+	width: 94px;
+	height: 26px;
+	margin: 5px;
+	margin-top: 8px;
+	text-align: center;
+	float: right;
+	color: white;
+	background-color: #ff9e9e;
+	border: none;
+	border-radius: 6px;
+	box-shadow: 0px 2px 5px black;
+	font-size: 14px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.alert {
+	color: #d48b8b;
+	text-align: center;
+	text-shadow: 1px 1px 1px black;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	vertical-align: middle;
+}

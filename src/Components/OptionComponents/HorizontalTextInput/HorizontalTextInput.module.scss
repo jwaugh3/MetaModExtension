@@ -1,0 +1,29 @@
+.inputContainer {
+	height: 24px;
+	margin-top: 10px;
+	display: grid;
+}
+
+.title {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+	font-size: 15px;
+	display: flex;
+}
+
+.horizontalInput {
+	width: 80px;
+	height: 24px;
+	background-color: #6d6c6d;
+	border: none;
+	border-radius: 4px;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+	color: white;
+	padding-right: 6px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+	font-size: 15px;
+	padding-bottom: 3px;
+	padding-left: 6px;
+	text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+}

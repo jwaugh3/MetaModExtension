@@ -1,0 +1,118 @@
+.toggleOptionContainer {
+	height: 24px;
+	display: grid;
+	grid-template-columns: 80% 20%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.toggleOptionTitleContainer {
+	margin-top: 0px;
+	height: 24px;
+	display: inline;
+}
+
+.toggleOptionTitle {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+	font-size: 15px;
+	margin: 0px;
+}
+
+.highlight {
+	color: #7389f8;
+	display: inline;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+	font-size: 15px;
+}
+
+.on-off-toggle {
+	cursor: pointer;
+	width: 48px;
+	height: 24px;
+	position: relative;
+	display: inline-block;
+	margin: auto;
+	margin-top: 4px;
+	z-index: 5;
+}
+
+.on-off-toggle__slider {
+	cursor: pointer;
+	width: 35px;
+	height: 16px;
+	display: block;
+	border-radius: 34px;
+	background-color: #18181b;
+	transition: background-color 0.4s;
+	box-shadow: inset 1px 1px 1px #000000;
+	z-index: 5;
+	margin-left: 1px;
+
+	&:before {
+		content: '';
+		display: block;
+		background-color: #ff9e9e;
+		box-shadow: 1px 1px 2px #18181bc7;
+		bottom: 6px;
+		height: 20px;
+		left: 0px;
+		position: absolute;
+		transition: .4s;
+		width: 20px;
+		z-index: 5;
+		border-radius: 100%;
+	}
+
+	&:after {
+		display: block;
+		line-height: 24px;
+		text-transform: uppercase;
+		font-size: 12px;
+		font-weight: bold;
+		content: '';
+		color: white;
+		padding-left: 20px;
+		transition: all 0.4s;
+		z-index: 5;
+	}
+}
+
+.on-off-toggle__input {
+	z-index: -1;
+	/*
+      This way of hiding the default input is better 
+      for accessibility than using display: none;
+    */
+	position: absolute;
+	opacity: 0;
+}
+
+.on-off-toggle__input:checked + .on-off-toggle__slider {
+	cursor: pointer;
+	background-color: #18181b;
+	box-shadow: inset 1px 1px 1px #18181b;
+
+	&:before {
+		transform: translateX(32px);
+		content: '';
+		display: block;
+		background-color: #90d48b;
+		box-shadow: 1px 1px 2px #18181bc7;
+		bottom: 6px;
+		height: 20px;
+		left: -14px;
+		position: absolute;
+		transition: .4s;
+		width: 20px;
+		z-index: 5;
+		border-radius: 50%;
+	}
+	&:after {
+		content: '';
+		color: #ffffff;
+		padding-left: 8px;
+		z-index: 5;
+	}
+}

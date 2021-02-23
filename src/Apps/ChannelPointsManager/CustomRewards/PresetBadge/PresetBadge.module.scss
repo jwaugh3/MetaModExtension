@@ -1,0 +1,42 @@
+.presetContainer {
+	width: 90%;
+	height: 56px;
+	background-color: #484b53;
+	border-radius: 4px;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+	margin: auto;
+	margin-top: 6px;
+	grid-template-rows: 35% 65%;
+	padding-left: 6px;
+	padding-right: 6px;
+	cursor: pointer;
+}
+
+.titleContainer {
+	grid-row-start: 1;
+	grid-row-end: 2;
+	border-bottom: 1px solid #b5b5b5;
+}
+
+.title {
+	font-size: 15px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+	margin: 0px;
+	color: white;
+	line-height: 150%;
+}
+
+.descContainer {
+	grid-row-start: 2;
+	grid-row-end: 3;
+}
+
+.description {
+	font-size: 13px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+	margin: 0px;
+	color: #b5b5b5;
+	line-height: 110%;
+}
