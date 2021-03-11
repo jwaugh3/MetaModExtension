@@ -19,7 +19,7 @@ export default class HorizontalTextInput extends Component {
                         {this.props.text}
                     </div>
                     :
-                    <input type="text" maxLength={this.props.maxCount} id={this.props.title} value={this.props.text} onChange={(event)=>{
+                    <input type="text" placeholder={this.props.placeholder} maxLength={this.props.maxCount} id={this.props.title} value={this.props.text} onChange={(event)=>{
                         if(this.props.type === 'number'){this.validate(event)}
                         else {this.props.textInput(event.target.value)}
                     }} className={styles.horizontalInput}/>

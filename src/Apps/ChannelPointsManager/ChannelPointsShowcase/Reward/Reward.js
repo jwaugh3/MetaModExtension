@@ -26,6 +26,23 @@ class Reward extends Component {
         let badgeNum = this.props.badgeNum
         let customRewards = this.props.customRewards[badgeNum]
         let typeText = ''
+        switch(customRewards.rewardType){
+            case 'vip':
+                typeText = 'VIP'
+                break;
+            case 'discordRank':
+                typeText = 'Discord'
+                break;
+            case 'giveaway':
+                typeText = 'Giveaway'
+                break;
+            case 'custom':
+                typeText = 'Default'
+                break;
+            case 'timeout':
+                typeText = 'Timeout'
+                break;
+        }
         if(this.props.isManageable && customRewards.rewardType !== 'giveaway' && customRewards.rewardType !== undefined){
             toggler.push(
                 <ToggleSwitch key='switch' toggleHandler={()=>{
@@ -35,22 +52,20 @@ class Reward extends Component {
                 visibility={this.props.customRewards[this.props.badgeNum].rewardType !== 'giveaway' ? true : false}
                 />
             )
-        } else if(this.props.isManageable && customRewards.rewardType !== undefined) {
-            typeText = customRewards.rewardType.charAt(0).toUpperCase() + '' + customRewards.rewardType.slice(1)
         }
-
 
         return (
             <Auxiliary>
 
                 <div className={styles.rewardContainer} style={this.props.visibility ? {visibility: 'visible'} : {visibility: 'hidden'}} 
-                        onClick={()=>this.props.isManageable ? this.props.displayFormHandler(this.props.displayForm.status, this.props.badgeNum) : ''}>
+                        onClick={()=>this.props.isManageable ? this.props.displayFormHandler(this.props.displayForm.status, this.props.badgeNum) : ''}
+                        >
 
                     <div className={styles.rewardBadge} style={{backgroundColor: this.props.badgeColor}}>
                         
                         <div className={styles.toggleContainer}>
                             <div className={styles.rewardType}>
-                                {customRewards.rewardType !== 'custom' && customRewards.isManageable ? 
+                                {customRewards.isManageable ? 
                                     
                                         <p className={styles.typeText}>{typeText}</p>
                                 
@@ -63,7 +78,7 @@ class Reward extends Component {
                         <img className={styles.rewardIcon} src={this.props.rewardIcon} alt='reward icon'/>
                         <div className={styles.costContainer}>
                             <img className={styles.costIcon} src={costIcon} alt={'cost icon'}/>
-                            <div className={styles.costText}>{this.props.rewardCost}</div>
+                            <div className={styles.costText}>{this.props.rewardCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</div>
                         </div>
                     </div>
 

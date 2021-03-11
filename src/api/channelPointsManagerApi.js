@@ -146,10 +146,10 @@ export const getRewardSettings = async (apiURL, channel, customRewards, setCusto
     rewardSettings.custom_rewards.forEach((reward)=>{
 
         let settings = JSON.parse(reward.reward_settings)
-        if(reward.reward_type === 'giveaway' || reward.reward_type === 'vip'){
-            console.log(reward)
+        if(reward.reward_type !== 'custom'){
+
             let setBadgeNum = customRewards.findIndex(x => x.rewardID === reward.reward_id)
-            console.log(setBadgeNum)
+
             setCustomSettings(setBadgeNum, 'rewardType', reward.reward_type)
             for(let key in settings){
                 setCustomSettings(setBadgeNum, key, settings[key])

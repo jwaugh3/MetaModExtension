@@ -12,7 +12,7 @@ import styles from './Main.module.scss'
 export class Main extends Component {
 
     componentDidMount = async () => {
-        let channelInfo = await getChannel('http://localhost:5000', this.props.jwtToken)
+        let channelInfo = await getChannel(this.props.apiEndpoint, this.props.jwtToken)
         this.props.setChannel(channelInfo.channel)
         this.props.setBroadcasterType(channelInfo.type)
     }

@@ -9,7 +9,7 @@ export const getCustomRewardHandler = async (apiEndpoint, channel, createReward,
             if(existingRewards[0].data.length !== 0 || existingRewards[1].length !== 0){
                 for(let x=0; x < 2; x++){
                     existingRewards[x].data.forEach((existingReward) => {
-                    
+
                         let reward = {
                             rewardName: existingReward.title,
                             rewardID: existingReward.id,
@@ -23,8 +23,8 @@ export const getCustomRewardHandler = async (apiEndpoint, channel, createReward,
                             viewerInputRequired: existingReward.is_user_input_required,
                             addRedemption: !existingReward.should_redemptions_skip_request_queue,
                             cooldown: existingReward.global_cooldown_setting.is_enabled,
-                            redemptionCooldownTimeLabel: 'seconds',
-                            redemptionCooldownTime: existingReward.global_cooldown_setting.global_cooldown_seconds,
+                            redemptionCooldownTimeLabel: 'minutes',
+                            redemptionCooldownTime: existingReward.global_cooldown_setting.global_cooldown_seconds/60,
                             redemptionPerStream: existingReward.max_per_stream_setting.max_per_stream,
                             redemptionPerUser: existingReward.max_per_user_per_stream_setting.max_per_user_per_stream,
                             isEnabled: existingReward.is_enabled,
@@ -45,14 +45,8 @@ export const createRewardOnTwitch = async (apiEndpoint, channel, setNewRewardID,
 console.log(customRewards)
     let formData = customRewards[badgeNum]
 
-    let cooldownTime
-    if(formData.redemptionCooldownTimeLabel === 'seconds'){
-        cooldownTime = formData.redemptionCooldownTime
-    } else if( formData.redemptionCooldownTimeLabel === 'minutes'){
-        cooldownTime = formData.redemptionCooldownTime * 60
-    } else if(formData.redemptionCooldownTimeLabel === 'hours'){
-        cooldownTime = formData.redemptionCooldownTime * 60 * 60
-    }
+    let cooldownTime = formData.redemptionCooldownTime * 60
+    
     let backgroundColor = formData.backgroundColor.toUpperCase()
     
     let rewardDataSend = {
@@ -62,19 +56,27 @@ console.log(customRewards)
         is_enabled: formData.isEnabled,
         background_color: backgroundColor,
         is_user_input_required: formData.viewerInputRequired,
-        is_max_per_user_per_stream_enabled: formData.redemptionPerStream === '' ? false : true,
         is_global_cooldown_enabled: formData.cooldown,
         global_cooldown_seconds: cooldownTime,
         should_redemptions_skip_request_queue: !formData.addRedemption
     }
 
     if(formData.redemptionPerStream !== ''){
+        rewardDataSend.is_max_per_stream_enabled = true
         rewardDataSend.max_per_stream = formData.redemptionPerStream
+    } else {
+        rewardDataSend.is_max_per_stream_enabled = false
     }
+    console.log(formData)
     if(formData.redemptionPerUser !== ''){
+        rewardDataSend.is_max_per_user_per_stream_enabled = true
         rewardDataSend.max_per_user_per_stream = formData.redemptionPerUser
+    } else {
+        rewardDataSend.is_max_per_user_per_stream_enabled = false
     }
 
+
+console.log(rewardDataSend)
     //create object with metamod settings only
     let standardKeys = [
         'rewardType',

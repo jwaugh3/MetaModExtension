@@ -19,7 +19,7 @@ import TextAreaInput from '../../../../../Components/OptionComponents/TextAreaIn
 export class Form extends Component {
 
     deleteCustomRewardOnTwitch = async (badgeNum) => {
-        await deleteCustomReward('http://localhost:5000', this.props.channel, this.props.customRewards[badgeNum].rewardID).then((res)=>{
+        await deleteCustomReward(this.props.apiEndpoint, this.props.channel, this.props.customRewards[badgeNum].rewardID).then((res)=>{
             let statusCode = JSON.parse(res.response.statusCode)
             if(statusCode === 204){
                 this.props.deleteFormHandler(badgeNum)
@@ -129,6 +129,11 @@ export class Form extends Component {
                             width='300'
                             toggleHandler={()=>{
                                 this.props.toggleHandler(customRewards.cooldown, 'cooldown', badgeNum)
+                                if(customRewards.cooldown === false){
+                                    this.props.setInputValue('', 'redemptionCooldownTime', badgeNum)
+                                    this.props.setInputValue('', 'redemptionPerStream', badgeNum)
+                                    this.props.setInputValue('', 'redemptionPerUser', badgeNum)
+                                }
                             }} 
                             checked={customRewards.cooldown} 
                             option={'cooldown'}
@@ -141,7 +146,7 @@ export class Form extends Component {
                                     <label htmlFor="redemptionCooldown" id="redemptionCooldownLabel">Redemption Cooldown</label>
                                     <div className={styles.optionGrid}>
                                         <input type="text" maxLength="10" id="redemptionCooldown" value={customRewards.redemptionCooldownTime} onChange={(event)=>this.props.setInputValue(event.target.value, 'redemptionCooldownTime', badgeNum)} className={styles.cooldownInput}/>
-                                        <div className={styles.unit}>seconds</div>
+                                        <div className={styles.unit}>{customRewards.redemptionCooldownTimeLabel}</div>
                                     </div>
                             
                                 <div className={styles.cooldownOption}>

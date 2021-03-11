@@ -13,7 +13,7 @@ const formDefault = {
     viewerInputRequired: false,
     addRedemption: true,
     cooldown: false,
-    redemptionCooldownTimeLabel: 'seconds',
+    redemptionCooldownTimeLabel: 'minutes',
     redemptionCooldownTime: 0,
     redemptionPerStream: '',
     redemptionPerUser: '',

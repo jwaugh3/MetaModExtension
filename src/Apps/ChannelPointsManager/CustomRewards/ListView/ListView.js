@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 //Components
 import PresetBadge from '../PresetBadge/PresetBadge'
+import Subtitle from '../../../../Components/OptionComponents/Subtitle/Subtitle'
 //Style
 import styles from './ListView.module.scss'
 //Functional Assets
 import basicFormDefault from '../RewardForms/BasicReward/formDefault'
 import giveawayFormDefault from '../RewardForms/Giveaway/giveawayFormDefault'
 import vipFormDefault from '../RewardForms/VIP/vipFormDefault'
+import timeoutFormDefault from '../RewardForms/Timeout/timeoutFormDefault'
+import discordRankFormDefault from '../RewardForms/DiscordRank/discordRankFormDefault'
 //State Management
 import { connect } from 'react-redux'
 
@@ -43,12 +46,33 @@ export class ListView extends Component {
                     this.props.createReward({...vipFormDefault})
                     this.props.setCurrentDisplay('manager')
                 }}
+            />,
+            <PresetBadge 
+                key='TimeoutUser'
+                title='Timeout a Chatter'
+                description='Timeout viewer(s) in chat'
+                action={()=>{
+                    this.props.displayFormHandler(this.props.displayForm.status, 0)
+                    this.props.createReward({...timeoutFormDefault})
+                    this.props.setCurrentDisplay('manager')
+                }}
+            />,
+            <PresetBadge 
+                key='DiscordRanks'
+                title='Discord Ranks'
+                description='Allow viewers to rank up in Discord'
+                action={()=>{
+                    this.props.displayFormHandler(this.props.displayForm.status, 0)
+                    this.props.createReward({...discordRankFormDefault})
+                    this.props.setCurrentDisplay('manager')
+                }}
             />
         ]
 
 
         return (
             <div className={styles.listContainer}>
+                <Subtitle title='Reward Presets'></Subtitle>
                 {renderOptions}
             </div>
         )

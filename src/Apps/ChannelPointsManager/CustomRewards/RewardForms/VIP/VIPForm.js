@@ -11,6 +11,7 @@ import TextAreaInput from '../../../../../Components/OptionComponents/TextAreaIn
 import FormButton from '../../../../../Components/OptionComponents/FormButton/FormButton'
 import Disclaimer from '../../../../../Components/OptionComponents/Disclaimer/Disclaimer'
 import HorizontalTextInput from '../../../../../Components/OptionComponents/HorizontalTextInput/HorizontalTextInput'
+import ToggleOption from '../../../../../Components/OptionComponents/ToggleOption/ToggleOption'
 //Assets
 import editIcon from '../../../../../resources/channelPointsManager/editEmoteIcon.png'
 import channelPointsIcon from '../../../../../resources/channelPointsManager/customRewardIcon.png'
@@ -20,13 +21,9 @@ import { connect } from 'react-redux'
 
 export class VIPForm extends Component {
 
-    state = {
-        formUpdated: false
-    }
-
     deleteCustomRewardOnTwitch = async (badgeNum) => {
         console.log(this.props.channel, this.props.customRewards[badgeNum].rewardID)
-        await deleteCustomReward('http://localhost:5000', this.props.channel, this.props.customRewards[badgeNum].rewardID).then((res)=>{
+        await deleteCustomReward(this.props.apiEndpoint, this.props.channel, this.props.customRewards[badgeNum].rewardID).then((res)=>{
             let statusCode = JSON.parse(res.response.statusCode)
             if(statusCode === 204){
                 this.props.deleteFormHandler(badgeNum)
@@ -65,7 +62,6 @@ export class VIPForm extends Component {
                         value={customRewards.rewardName}
                         count={customRewards.rewardName.length}
                         action={(event)=>{
-                            this.setState({formUpdated: true})
                             this.props.setInputValue(event.target.value, 'rewardName', badgeNum)
                         }}
                     />
@@ -96,8 +92,29 @@ export class VIPForm extends Component {
                     }
 
                     {customRewards.rewardID === '' ? 
+                        <ToggleOption 
+                            title="Max Redemptions Per Stream"
+                            width='300'
+                            toggleHandler={()=>{
+                                this.props.setInputValue(!customRewards.maxRedemptionEnabled, 'maxRedemptionEnabled', badgeNum) 
+                                this.props.setInputValue('2', 'redemptionPerStream', badgeNum) 
+                            }} 
+                            checked={customRewards.maxRedemptionEnabled} 
+                            option={'maxRedemptions'}
+                        />
+                        :
+                        <ToggleOption 
+                            title="Max Redemptions Per Stream"
+                            width='300'
+                            toggleHandler={()=>{}}
+                            checked={customRewards.redemptionPerStream} 
+                            option={'maxRedemptions'}
+                        />
+                    }
+
+                    {customRewards.maxRedemptionEnabled ? 
                         <HorizontalTextInput 
-                            title='Max Redemptions Per Stream*'
+                            title='Redemptions Per Stream'
                             text={customRewards.redemptionPerStream}
                             width='290'
                             textInput={(text)=>{
@@ -108,13 +125,7 @@ export class VIPForm extends Component {
                             maxCount='2'
                             type='number'
                         />
-                        :
-                        <HorizontalTextInput 
-                            title='Max Redemptions Per Stream*'
-                            text={customRewards.redemptionPerStream}
-                            width='290'
-                            static
-                        />
+                        : null
                     }
 
                     <div className={styles.formSpacer}></div>
@@ -126,7 +137,6 @@ export class VIPForm extends Component {
                             width='110'
                             value={customRewards.cost}
                             action={(event)=>{
-                                this.setState({formUpdated: true})
                                 this.props.setInputValue(event.target.value, 'cost', badgeNum)
                             }}
                             icon={channelPointsIcon}
@@ -143,7 +153,6 @@ export class VIPForm extends Component {
                             handleColorChangeComplete={this.props.handleColorChangeComplete}
                             toggleColorSelect={this.props.toggleColorSelect}
                             action={()=>{
-                                this.setState({formUpdated: true})
                                 this.props.toggleColorSelect(customRewards.displayPicker, badgeNum)
                             }}
                         />
@@ -158,7 +167,6 @@ export class VIPForm extends Component {
                         value={customRewards.description}
                         count={customRewards.description.length}
                         action={(event)=>{
-                            this.setState({formUpdated: true})
                             this.props.setInputValue(event.target.value, 'description', badgeNum)
                         }}
                     />
@@ -180,13 +188,8 @@ export class VIPForm extends Component {
                     
                     {this.props.alert ? <div className={styles.alert}>{this.props.alertMessage}<img style={{height: '24px'}} src="https://cdn.betterttv.net/emote/59f27b3f4ebd8047f54dee29/1x" alt="emote"/></div> : null}
 
-                    <FormButton title={this.state.formUpdated ? 'save' : 'cancel'} color={customRewards.rewardID === '' ? '#90D48B' : '#05a1e5'} action={(event)=>{
-                        if(this.state.formUpdated){
-                            this.props.submitForm(event, this.props.badgeNum)
-                        } else {
-                            this.props.displayFormHandler(this.props.displayForm.status, null)
-                        }
-
+                    <FormButton title='save' color='#90D48B' action={(event)=>{
+                        this.props.submitForm(event, this.props.badgeNum)
                     }}></FormButton>
 
                     <FormButton title={customRewards.rewardID === '' ? 'cancel' : 'delete'}

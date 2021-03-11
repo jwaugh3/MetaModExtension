@@ -3,7 +3,7 @@
 	width: 99%;
 	top: 0;
 	z-index: 99999;
-	font-family: sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 }
 
 .modal-window {
@@ -84,4 +84,13 @@
 .modal-body {
 	display: flex;
 	flex-direction: column;
+}
+
+input[type=text] {
+	background-color: #6d6c6d;
+	height: 24px;
+	color: white;
+	border-radius: 4px;
+	border: none;
+	padding: 0px 6px 0px 3px;
 }

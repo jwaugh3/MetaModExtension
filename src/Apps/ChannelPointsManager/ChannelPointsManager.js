@@ -7,6 +7,7 @@ import TopNav from './TopNav/TopNav';
 import LoadingSpinner from '../../Components/LoadingSpinner/LoadingSpinner';
 import ChannelPointsShowcase from './ChannelPointsShowcase/ChannelPointsShowcase';
 import ListView from './CustomRewards/ListView/ListView'
+import discordRankFormDefault from './CustomRewards/RewardForms/DiscordRank/discordRankFormDefault'
 //Style
 import styles from './ChannelPointsManager.module.scss';
 //State Management
@@ -19,21 +20,26 @@ class ChannelPoints extends Component {
     }
 
     componentDidMount = async() => {
-        let rewardVerification = await getCustomRewardHandler('http://localhost:5000', this.props.channel, this.props.createReward, this.props.setCustomSettings)
+        let backEndURL
+        if(window.location.origin.includes("localhost")){
+            backEndURL = 'http://localhost:5000'
+        } else {
+            backEndURL = 'https://api.metamoderation.com'
+        }
+        let rewardVerification = await getCustomRewardHandler(backEndURL, this.props.channel, this.props.createReward, this.props.setCustomSettings)
         
         if(rewardVerification === true){
             this.props.setChannelPointsReceived(true)
             this.setState({channelPointsReceived: true})
         }
+        
+        let rewardSettings = await getRewardSettings(backEndURL, this.props.channel, this.props.customRewards, this.props.setCustomSettings)
 
-        let rewardSettings = await getRewardSettings('http://localhost:5000', this.props.channel, this.props.customRewards, this.props.setCustomSettings)
-
-        // let mods = await getMods('http://localhost:5000', this.props.channel)
+        // let mods = await getMods(this.props.apiEndpoint, this.props.channel)
         // this.props.setMods(mods)
     }
 
     render() {
-        
 
         let renderDisplay = []
 
@@ -41,7 +47,7 @@ class ChannelPoints extends Component {
             case 'manager':
                 renderDisplay.push(
                     <div className={styles.channelPointsModule} key='showcase'>
-                        <ChannelPointsShowcase apiEndpoint={'http://localhost:5000'}/>                    
+                        <ChannelPointsShowcase apiEndpoint={window.location.origin.includes("localhost") ? 'http://localhost:5000' : 'https://api.metamoderation.com'}/>                    
                     </div>
                 )
                 break;
@@ -55,7 +61,7 @@ class ChannelPoints extends Component {
             default:
                 renderDisplay.push(
                     <div className={styles.channelPointsModule} key='showcase1'>
-                        <ChannelPointsShowcase apiEndpoint={'http://localhost:5000'}/>                    
+                        <ChannelPointsShowcase apiEndpoint={window.location.origin.includes("localhost") ? 'http://localhost:5000' : 'https://api.metamoderation.com'}/>                    
                     </div>
                 )
                 break;
@@ -85,7 +91,7 @@ class ChannelPoints extends Component {
                 <TopNav>
                     {/* <div> */}
                         <h1 className={styles.mainTitle}>Channel Points Manager</h1>
-                        {/* <button onClick={()=>console.log(this.props.stateStorage, this.props.applicationStorage)}></button> */}
+                        <button onClick={()=>console.log(this.props.stateStorage, discordRankFormDefault)}></button>
                     {/* </div> */}
                     
                     {this.props.displayForm.status ? 

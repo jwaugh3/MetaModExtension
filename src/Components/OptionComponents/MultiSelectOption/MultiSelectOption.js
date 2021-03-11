@@ -4,9 +4,6 @@ import styles from './MultiSelectOption.module.scss'
 
 class MultiSelectOption extends Component {
 
-    state = {
-        selected: 'allchat'
-    }
 
     render() {
 
@@ -14,10 +11,18 @@ class MultiSelectOption extends Component {
             return (
             <div className={styles.option} key={index + option}
                 onClick={()=>{
-                    this.props.setStore(option)
-                    this.setState({selected: option})
+                    let newSelected = [...this.props.selected]
+                    if(newSelected.includes(option)){
+                        let index = newSelected.findIndex((x)=>x === option)
+                        newSelected.splice(index, 1)
+                        console.log(index)
+                    } else {
+                        newSelected.push(option)
+                    }
+                    console.log(newSelected)
+                    this.props.setStore(newSelected)
                 }}
-                style={this.props.selected === option ? {backgroundColor: this.props.selectedColor} : {backgroundColor: '#6D6C6D'}}
+                style={this.props.selected.includes(option) ? {backgroundColor: this.props.selectedColor} : {backgroundColor: '#6D6C6D'}}
                 >
                 <p className={styles.optionText}>
                     {option}

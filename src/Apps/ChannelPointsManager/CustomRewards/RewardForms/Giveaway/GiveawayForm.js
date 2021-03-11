@@ -28,7 +28,7 @@ import { connect } from 'react-redux'
 export class GiveawayForm extends Component {
 
     deleteCustomRewardOnTwitch = async (badgeNum) => {
-        await deleteCustomReward('http://localhost:5000', this.props.channel, this.props.customRewards[badgeNum].rewardID).then((res)=>{
+        await deleteCustomReward(this.props.apiEndpoint, this.props.channel, this.props.customRewards[badgeNum].rewardID).then((res)=>{
             let statusCode = JSON.parse(res.response.statusCode)
             if(statusCode === 204){
                 this.props.deleteFormHandler(badgeNum)

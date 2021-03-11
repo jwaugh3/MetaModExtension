@@ -3,7 +3,7 @@ const vipFormDefault = {
     rewardType: 'vip',
     rewardName: 'Become a VIP',
     rewardID: '',
-    cost: '',
+    cost: '100000',
     description: 'Become a VIP and gain access to chatting without being affected by slow, sub-only, or followers-only modes!',
     //color picker
     backgroundColor: "#F72ED0",
@@ -20,7 +20,8 @@ const vipFormDefault = {
     isEnabled: true,
     isManageable: true,
     //custom settings
-    statusLength: '24'
+    statusLength: '24',
+    maxRedemptionEnabled: false
 }
 
 module.exports = vipFormDefault

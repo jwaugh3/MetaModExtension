@@ -10,7 +10,7 @@ import styles from './Login.module.scss'
 export class Login extends Component {
 
     logUserIn = () => {
-        openSignInWindow('http://localhost:5000/auth/login', 'authenticate')
+        openSignInWindow(this.props.apiEndpoint + '/auth/login', 'authenticate')
     }
 
     render() {

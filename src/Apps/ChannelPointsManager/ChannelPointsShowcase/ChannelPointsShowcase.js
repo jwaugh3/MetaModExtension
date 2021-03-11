@@ -34,22 +34,20 @@ export class ChannelPointsShowcase extends Component {
                 } else {
                     renderedManageableCustomRewards.push(
                         <Reward 
-                        key={this.props.customRewards.indexOf(reward)} 
-                        badgeNum={this.props.customRewards.indexOf(reward)}
-                        rewardText={reward.rewardName} 
-                        rewardCost={reward.cost} 
-                        rewardIcon={tempIcon} 
-                        badgeColor={reward.backgroundColor}
-                        visibility={true}
-                        isManageable={reward.isManageable}
-                        apiEndpoint={this.props.apiEndpoint}
-                    />
+                            key={this.props.customRewards.indexOf(reward)} 
+                            badgeNum={this.props.customRewards.indexOf(reward)}
+                            rewardText={reward.rewardName} 
+                            rewardCost={reward.cost} 
+                            rewardIcon={tempIcon} 
+                            badgeColor={reward.backgroundColor}
+                            visibility={true}
+                            isManageable={reward.isManageable}
+                            apiEndpoint={this.props.apiEndpoint}
+                        />
                     )
                 }
             })
         }
-
-        let checkForCustom = this.props.customRewards.findIndex((x)=>x.isManageable === true)
 
         return (
             <div className={styles.showcaseContainer} style={this.props.displayForm.status ? {overflow: 'hidden'} : {visibility: 'visible'}}>
@@ -64,12 +62,13 @@ export class ChannelPointsShowcase extends Component {
                                         : null}
                                 </Subtitle>
                                 <div className={styles.rewardContainer}>
-                                    {checkForCustom >= 0 ?
+                                    {renderedManageableCustomRewards.length > 0 ?
                                         renderedManageableCustomRewards
-                                        : <p className={styles.subText}>Create a reward by clicking the button at the top right.</p>
+                                        : <p className={styles.subText} style={{color: '#90D48B'}}>Create a reward by clicking the + button at the top right.</p>
                                     }                       
                                 </div>
                             </div>
+
                             <div className={styles.customContainer}>
                                 <Subtitle title='Twitch Managed Rewards'>
                                 
@@ -83,15 +82,20 @@ export class ChannelPointsShowcase extends Component {
                                         </div>
                                         </div>
                                     </a>
-                                    
                                 </Subtitle>
-                                
                                 <div className={styles.rewardContainer}>
-                                    {this.props.broadcasterType !== '' ?
+                                    {renderedCustomRewards.length > 0 ?
                                         renderedCustomRewards
-                                        : <Reward visibility={false}/>
+                                        : <p className={styles.subText}>No rewards found on twitch.tv</p>
                                     }                       
                                 </div>
+                                
+                                {/* <div className={styles.rewardContainer}>
+                                    {this.props.broadcasterType !== '' ?
+                                        null
+                                        : <Reward/>
+                                    }                       
+                                </div> */}
                             </div>
                         </div>
                     : <div className={styles.noRecords}>This feature requires the channel to be affiliate/partner. <img src="https://cdn.betterttv.net/emote/59f27b3f4ebd8047f54dee29/2x" style={{width: '20px'}} alt='doggo'/></div>}

@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions';
+import update from 'react-addons-update'
 
 const initialState = {
     customRewards: [],
@@ -12,13 +13,14 @@ const reducer = (state = initialState, action) => {
 
     switch(action.type){
         case actionTypes.CREATE_REWARD:
-            let sortedArray = [...state.customRewards, action.payload]
-            sortedArray.sort((a, b) => (a.cost > b.cost || (a.cost === b.cost && a.rewardName > b.rewardName)) ? 1 : -1)
+            let sortedArray = [action.payload, ...state.customRewards]
+            // sortedArray.sort((a, b) => (a.cost > b.cost || (a.cost === b.cost && a.rewardName > b.rewardName)) ? 1 : -1)
             return {
                 ...state,
                 customRewards: sortedArray
             }
         case actionTypes.DISPLAY_FORM:
+            console.log(action.payload.badgeNum)
             let newDisplayForm = {status: !action.payload.status, badgeNum: action.payload.badgeNum, type: action.payload.type}
             return {
                 ...state,
@@ -110,6 +112,35 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 customRewards: newInputArray
+            }
+        case actionTypes.SET_INPUT_ARRAY_VALUE:
+            console.log(state.customRewards)
+            let newInputIndexedArray = [...state.customRewards]
+            let newNestedArray = [...newInputIndexedArray[action.payload.badgeNum][action.payload.input]]
+            newNestedArray[action.payload.index] = action.payload.value
+            newInputIndexedArray[action.payload.badgeNum][action.payload.input] = [...newNestedArray]
+            console.log(state.customRewards)
+            return {
+                ...state,
+                customRewards: [...newInputIndexedArray]
+            }
+        case actionTypes.REMOVE_INPUT_ARRAY_VALUE:
+            let newRemovalArray = [...state.customRewards[action.payload.badgeNum][action.payload.input]]
+            newRemovalArray.splice(action.payload.index, 1)
+            let newRemovalValues = [...state.customRewards]
+            newRemovalValues[action.payload.badgeNum][action.payload.input] = [...newRemovalArray]
+            return {
+                ...state,
+                customRewards: newRemovalValues
+            }
+        case actionTypes.INSERT_INPUT_ARRAY_VALUE:
+            let newInsertArray = [...state.customRewards[action.payload.badgeNum][action.payload.input]]
+            newInsertArray = [...newInsertArray, action.payload.value]
+            let newInsertValues = [...state.customRewards]
+            newInsertValues[action.payload.badgeNum][action.payload.input] = [...newInsertArray]
+            return {
+                ...state,
+                customRewards: newInsertValues
             }
         case actionTypes.TOGGLE_REWARD_STATUS:
             let updateRewardStatusArray = [...state.customRewards]

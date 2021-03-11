@@ -15,6 +15,7 @@ class App extends Component {
   componentDidMount = async () => {
     //window message handler
     window.addEventListener("message", async (event) => {
+      console.log(event.data)
       // if(event.data.substring(0,6) === "mmtkn="){
       //   //handles verification of chrome.storage.sync jwt token 
       //   let token = event.data.split('mmtkn=').pop()
@@ -40,16 +41,13 @@ class App extends Component {
 
   render() {
 
-    let renderedApp = this.props.jwtToken === '' ? <Login/> : <Main/>
+    let renderedApp = this.props.jwtToken === '' ? <Login apiEndpoint={window.location.origin.includes("localhost") ? 'http://localhost:5000' : 'https://api.metamoderation.com'}/> 
+    : <Main apiEndpoint={window.location.origin.includes("localhost") ? 'http://localhost:5000' : 'https://api.metamoderation.com'}/>
 
     return (
       <div className="flexModal">
         <Modal>
-          {/* {window.location.origin === "http://localhost:3000" ?  */}
-            {/* <Main/> */}
-            {/* : */}
             {renderedApp}
-        {/* } */}
         </Modal>
       </div>
     )
@@ -65,7 +63,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return{
       setJWTToken: (token) => dispatch({type: 'SET_JWT_TOKEN', payload: token}),
-      setStorageState: (settings) => dispatch({type: 'SET_STORAGE_STATE', payload: settings})
+      setStorageState: (settings) => dispatch({type: 'SET_STORAGE_STATE', payload: settings}),
+      setInputValue: (value, input, badgeNum) => dispatch({type: 'SET_INPUT_VALUE', payload: {value, input, badgeNum}})
   }
 }
 

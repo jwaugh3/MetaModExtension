@@ -6,6 +6,8 @@ import BasicForm from '../RewardForms/BasicReward/BasicForm';
 import GiveawayForm from '../RewardForms/Giveaway/GiveawayForm';
 import GiveawayReview from '../RewardForms/Giveaway/GiveawayReview';
 import VIPForm from '../RewardForms/VIP/VIPForm';
+import TimeoutForm from '../RewardForms/Timeout/TimeoutForm'
+import DiscordRankForm from '../RewardForms/DiscordRank/DiscordRankForm'
 //Style
 import styles from './ChannelPointsFormWrapper.module.scss';
 //State Management
@@ -22,14 +24,9 @@ class ChannelPointsForm extends Component {
         event.preventDefault()
         let customRewards = this.props.customRewards[badgeNum]
         if(customRewards.rewardName !== '' && customRewards.cost !== ''){
-            if(customRewards.rewardType === 'giveaway' && customRewards.winnerCount === ''){this.setState({alert: true, alertMessage: '*Please fill in the required fields*'})}
-            // if(customRewards.rewardType === 'vip' && this.props.mods.findIndex((x)=>x.user_login === 'metamoderation') === -1){
-            //     await getMods(this.props.apiEndpoint, this.props.channel)
-            //     if(this.props.mods.findIndex((x)=>x.user_login === 'metamoderation') === -1){
-            //         this.setState({alert: true, alertMessage: '"MetaModeration" must be a mod. Type "/mod metamoderation" in chat'})
-            //     }
-            // }
-            else {
+            if(customRewards.rewardType === 'giveaway' && customRewards.winnerCount === ''){
+                this.setState({alert: true, alertMessage: '*Please fill in the required fields*'})
+            } else {
                 this.props.displayFormHandler(this.props.displayForm.status, this.props.badgeNum)
                 this.setState({alert: false})
                 createRewardOnTwitch(this.props.apiEndpoint, this.props.channel, this.props.setNewRewardID, this.props.customRewards, this.props.deleteFailedReward, this.props.setChannelPointAlert, this.props.badgeNum)
@@ -47,20 +44,29 @@ class ChannelPointsForm extends Component {
         if(this.props.customRewards[this.props.badgeNum].rewardType === 'giveaway'){
             if(customRewards.rewardID !== ''){
                 renderedForm.push(
-                    <GiveawayReview key='giveawayReview' setState={(status)=>this.setState({alert: status})} alert={this.state.alert} apiEndpoint={this.props.apiEndpoint} badgeNum={this.props.badgeNum}/>
+                    <GiveawayReview key='giveawayReview' apiEndpoint={this.props.apiEndpoint} setState={(status)=>this.setState({alert: status})} alert={this.state.alert} apiEndpoint={this.props.apiEndpoint} badgeNum={this.props.badgeNum}/>
                 )
             } else {
                 renderedForm.push(
-                    <GiveawayForm key='giveawayForm' submitForm={this.submitForm} cancelForm={this.props.cancelForm} alert={this.state.alert} badgeNum={this.props.badgeNum}/>   
+                    <GiveawayForm key='giveawayForm' apiEndpoint={this.props.apiEndpoint} submitForm={this.submitForm} cancelForm={this.props.cancelForm} alert={this.state.alert} badgeNum={this.props.badgeNum}/>   
                 )
             }
         } else if(this.props.customRewards[this.props.badgeNum].rewardType === 'vip'){
             renderedForm.push(
-                <VIPForm key='vipForm' submitForm={this.submitForm} cancelForm={this.props.cancelForm} alert={this.state.alert} alertMessage={this.state.alertMessage} badgeNum={this.props.badgeNum}/>
+                <VIPForm key='vipForm' apiEndpoint={this.props.apiEndpoint} submitForm={this.submitForm} cancelForm={this.props.cancelForm} alert={this.state.alert} alertMessage={this.state.alertMessage} badgeNum={this.props.badgeNum}/>
             )
-        } else {
+        } else if(this.props.customRewards[this.props.badgeNum].rewardType === 'timeout'){
             renderedForm.push(
-                <BasicForm key='basicForm' submitForm={this.submitForm} cancelForm={this.props.cancelForm} alert={this.state.alert} badgeNum={this.props.badgeNum}/>
+                <TimeoutForm key='timeoutForm' apiEndpoint={this.props.apiEndpoint} setState={(data)=>this.setState(data)} submitForm={this.submitForm} cancelForm={this.props.cancelForm} alert={this.state.alert} alertMessage={this.state.alertMessage} badgeNum={this.props.badgeNum}/>
+            )
+        } else if(this.props.customRewards[this.props.badgeNum].rewardType === 'discordRank'){
+            renderedForm.push(
+                <DiscordRankForm key='discordRankForm' apiEndpoint={this.props.apiEndpoint} setState={(data)=>this.setState(data)} submitForm={this.submitForm} cancelForm={this.props.cancelForm} alert={this.state.alert} alertMessage={this.state.alertMessage} badgeNum={this.props.badgeNum}/>
+            )
+        }
+        else {
+            renderedForm.push(
+                <BasicForm key='basicForm' apiEndpoint={this.props.apiEndpoint} submitForm={this.submitForm} cancelForm={this.props.cancelForm} alert={this.state.alert} badgeNum={this.props.badgeNum}/>
             )
         } 
 

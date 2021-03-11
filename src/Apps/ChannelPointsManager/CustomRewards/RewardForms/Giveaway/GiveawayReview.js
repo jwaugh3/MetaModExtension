@@ -32,13 +32,14 @@ export class GiveawayForm extends Component {
 
     updateEntries = async (event) => {
         if(event !== null){event.preventDefault()}
-
+console.log(this.props.customRewards[this.props.badgeNum].rewardID, this.props.badgeNum)
         let entries = await getRewardEntries(this.props.apiEndpoint, this.props.channel, this.props.customRewards[this.props.badgeNum].rewardID)
         this.setState({entryCount: entries.userEntries.length})
+        console.log(entries)
     }
 
     deleteCustomRewardOnTwitch = async (badgeNum) => {
-        await deleteCustomReward('http://localhost:5000', this.props.channel, this.props.customRewards[badgeNum].rewardID).then((res)=>{
+        await deleteCustomReward(this.props.apiEndpoint, this.props.channel, this.props.customRewards[badgeNum].rewardID).then((res)=>{
             let statusCode = JSON.parse(res.response.statusCode)
             if(statusCode === 204){
                 this.props.deleteFormHandler(badgeNum)
@@ -76,10 +77,10 @@ export class GiveawayForm extends Component {
                         this.setState({winners: rerolledWinners})
                     }}>
                         <div className={styles.rerollArrow}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height='22' viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height='22' viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
                         </div>
                         <div className={styles.boxIcon}>
-                            <svg xmlns="http://www.w3.org/2000/svg" style={{position: 'absolute'}} width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" style={{position: 'absolute'}} width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                         </div>
                     </button>
                     <div className={styles.winnerName}>{winner}</div>
@@ -125,7 +126,7 @@ export class GiveawayForm extends Component {
                                     />
                                     <button className={styles.refreshButton} onClick={this.updateEntries}>
                                         <div className={styles.refreshIcon}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height='16' viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height='16' viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
                                         </div>
                                     </button>
                                 </div>
