@@ -68,7 +68,7 @@ export class ChannelPointsShowcase extends Component {
                                     }                       
                                 </div>
                             </div>
-
+                            {renderedCustomRewards.length > 0 ?
                             <div className={styles.customContainer}>
                                 <Subtitle title='Twitch Managed Rewards'>
                                 
@@ -83,12 +83,13 @@ export class ChannelPointsShowcase extends Component {
                                         </div>
                                     </a>
                                 </Subtitle>
-                                <div className={styles.rewardContainer}>
-                                    {renderedCustomRewards.length > 0 ?
-                                        renderedCustomRewards
-                                        : <p className={styles.subText}>No rewards found on twitch.tv</p>
-                                    }                       
-                                </div>
+                                
+                                    
+                                        <div className={styles.rewardContainer}>
+                                            {renderedCustomRewards}
+                                        </div>
+                                                             
+                               
                                 
                                 {/* <div className={styles.rewardContainer}>
                                     {this.props.broadcasterType !== '' ?
@@ -97,7 +98,11 @@ export class ChannelPointsShowcase extends Component {
                                     }                       
                                 </div> */}
                             </div>
+                            : 
+                            null
+                        }  
                         </div>
+                        
                     : <div className={styles.noRecords}>This feature requires the channel to be affiliate/partner. <img src="https://cdn.betterttv.net/emote/59f27b3f4ebd8047f54dee29/2x" style={{width: '20px'}} alt='doggo'/></div>}
                     </div>
                     

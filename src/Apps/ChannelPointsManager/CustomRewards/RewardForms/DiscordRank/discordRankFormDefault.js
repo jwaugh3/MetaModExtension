@@ -20,7 +20,7 @@ const discordRankFormDefault = {
     isEnabled: true,
     isManageable: true,
     //custom settings
-    rankNames: ['Level 1 - Bronze', 'Level 2 - Silver', 'Level 3 - Gold', 'Level 4 - Platinum'],
+    rankNames: ['Rank - Bronze', 'Rank - Silver', 'Rank -Gold', 'Rank - Platinum'],
     rankColors: ['#FFB18E', '#D6D6D6', '#FFD28E', '#72D0E3'],
     rankIDs: ['1', '2', '3', '4'],
     serverName: '',

@@ -48,7 +48,7 @@ export class DiscordRankForm extends Component {
         let discriminator = userData[2].substring(14, userData[2].length)
         let serverName = userData[3].substring(11, userData[3].length)
         let serverID = userData[4].substring(9, userData[4].length)
-
+console.log(userData, badgeNum)
         this.props.setInputValue(serverName, 'serverName', badgeNum)
         this.props.setInputValue(serverID, 'serverID', badgeNum)
         this.props.setInputValue(discordLogin, 'ownerLogin', badgeNum)
@@ -96,7 +96,10 @@ export class DiscordRankForm extends Component {
         return (
             <div className={styles.formContainer}>
             {offClick}
-            <Subtitle title='Create Custom Reward'/>
+            <Subtitle title='Create Custom Reward' backButton={customRewards.rewardID === '' ? true : false} action={()=>{
+                    this.props.deleteFormHandler(this.props.badgeNum)
+                    this.props.displayFormHandler(this.props.displayForm.status, null)
+                }}/>
             
             <div className={styles.form}>
 

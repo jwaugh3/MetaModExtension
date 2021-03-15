@@ -57,7 +57,10 @@ export class TimeoutForm extends Component {
         return (
             <div className={styles.formContainer}>
             {offClick}
-            <Subtitle title='Create Custom Reward'/>
+            <Subtitle title='Create Custom Reward' backButton={customRewards.rewardID === '' ? true : false} action={()=>{
+                    this.props.deleteFormHandler(this.props.badgeNum)
+                    this.props.displayFormHandler(this.props.displayForm.status, null)
+                }}/>
             
             <div className={styles.form}>
 

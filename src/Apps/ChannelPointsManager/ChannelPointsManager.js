@@ -91,7 +91,7 @@ class ChannelPoints extends Component {
                 <TopNav>
                     {/* <div> */}
                         <h1 className={styles.mainTitle}>Channel Points Manager</h1>
-                        <button onClick={()=>console.log(this.props.stateStorage, discordRankFormDefault)}></button>
+                        {/* <button onClick={()=>console.log(this.props.stateStorage, discordRankFormDefault)}></button> */}
                     {/* </div> */}
                     
                     {this.props.displayForm.status ? 
