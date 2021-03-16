@@ -42,7 +42,7 @@ export const getCustomRewardHandler = async (apiEndpoint, channel, createReward,
 }
 
 export const createRewardOnTwitch = async (apiEndpoint, channel, setNewRewardID, customRewards, deleteFailedReward, setChannelPointAlert, badgeNum) => {
-console.log(customRewards)
+// console.log(customRewards)
     let formData = customRewards[badgeNum]
 
     let cooldownTime = formData.redemptionCooldownTime * 60
@@ -67,7 +67,7 @@ console.log(customRewards)
     } else {
         rewardDataSend.is_max_per_stream_enabled = false
     }
-    console.log(formData)
+    // console.log(formData)
     if(formData.redemptionPerUser !== ''){
         rewardDataSend.is_max_per_user_per_stream_enabled = true
         rewardDataSend.max_per_user_per_stream = formData.redemptionPerUser
@@ -76,7 +76,7 @@ console.log(customRewards)
     }
 
 
-console.log(rewardDataSend)
+// console.log(rewardDataSend)
     //create object with metamod settings only
     let standardKeys = [
         'rewardType',

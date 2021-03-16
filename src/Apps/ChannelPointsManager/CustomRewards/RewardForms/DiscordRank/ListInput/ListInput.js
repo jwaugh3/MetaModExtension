@@ -17,7 +17,7 @@ export default class ListInput extends Component {
     render() {
 
         let customRewards = this.props.customRewards[this.props.badgeNum]
-        console.log(customRewards.rankNames)
+        // console.log(customRewards.rankNames)
         let inputFields = []
 
         customRewards.rankIDs.map((id, index)=>{

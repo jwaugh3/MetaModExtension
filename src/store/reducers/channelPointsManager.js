@@ -20,7 +20,6 @@ const reducer = (state = initialState, action) => {
                 customRewards: sortedArray
             }
         case actionTypes.DISPLAY_FORM:
-            console.log(action.payload.badgeNum)
             let newDisplayForm = {status: !action.payload.status, badgeNum: action.payload.badgeNum, type: action.payload.type}
             return {
                 ...state,
@@ -44,7 +43,6 @@ const reducer = (state = initialState, action) => {
             } else return {...state}
         case actionTypes.DELETE_FORM:
             let deletedFormArray = [...state.customRewards]
-            console.log(action.payload, deletedFormArray)
             deletedFormArray.splice(action.payload, 1)
             
             return {
@@ -114,12 +112,10 @@ const reducer = (state = initialState, action) => {
                 customRewards: newInputArray
             }
         case actionTypes.SET_INPUT_ARRAY_VALUE:
-            console.log(state.customRewards)
             let newInputIndexedArray = [...state.customRewards]
             let newNestedArray = [...newInputIndexedArray[action.payload.badgeNum][action.payload.input]]
             newNestedArray[action.payload.index] = action.payload.value
             newInputIndexedArray[action.payload.badgeNum][action.payload.input] = [...newNestedArray]
-            console.log(state.customRewards)
             return {
                 ...state,
                 customRewards: [...newInputIndexedArray]

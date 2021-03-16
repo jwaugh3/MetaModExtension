@@ -93,7 +93,7 @@ export const getCustomReward = async (apiURL, channel) => {
             }
         }
     }
-console.log(rewards)
+// console.log(rewards)
     return rewards
 }
 

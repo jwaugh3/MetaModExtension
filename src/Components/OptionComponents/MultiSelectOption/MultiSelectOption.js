@@ -15,11 +15,11 @@ class MultiSelectOption extends Component {
                     if(newSelected.includes(option)){
                         let index = newSelected.findIndex((x)=>x === option)
                         newSelected.splice(index, 1)
-                        console.log(index)
+                        // console.log(index)
                     } else {
                         newSelected.push(option)
                     }
-                    console.log(newSelected)
+                    // console.log(newSelected)
                     this.props.setStore(newSelected)
                 }}
                 style={this.props.selected.includes(option) ? {backgroundColor: this.props.selectedColor} : {backgroundColor: '#6D6C6D'}}

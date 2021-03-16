@@ -31,7 +31,7 @@ export class Fleamarketbot extends Component {
     componentDidMount = async () => {
         let settings = await getFleamarketbotSettings('http://localhost:5000', this.props.jwtToken)
         this.props.setStorageState(settings)
-        console.log(settings)
+        // console.log(settings)
     }
 
     updateSettings = async () => {
@@ -47,8 +47,8 @@ export class Fleamarketbot extends Component {
         let monthAgo = new Date()
         monthAgo.setMonth(monthAgo.getMonth() - 1)
         if(monthAgo.getTime() > new Date(this.props.lastChanged).getTime()){
-            console.log('ran updatechannel')
-            console.log(this.props.stateSnapshot)
+            // console.log('ran updatechannel')
+            // console.log(this.props.stateSnapshot)
             updateChannel('http://localhost:5000', this.props.jwtToken, this.props.stateSnapshot)
             this.setState({updatedChannel: true})
             this.props.setLastChanged(new Date().toString())
@@ -57,7 +57,6 @@ export class Fleamarketbot extends Component {
             newChange.setMonth(newChange.getMonth()+1)
             // newChange
             this.setState({changeError: true, updatedChannel: false, nextChange: moment(newChange).from()})
-            console.log('no long enough')
         }
         
     }

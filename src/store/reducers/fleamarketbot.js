@@ -18,7 +18,6 @@ const reducer = (state = initialState, action) => {
                 modeSelection: action.payload
             }
         case actionTypes.SET_DELAY:
-            console.log(action.payload)
             return {
                 ...state,
                 delay: action.payload
@@ -31,13 +30,11 @@ const reducer = (state = initialState, action) => {
                 targetRequester: newStatus
             }
         case actionTypes.SET_CHANNEL_CONNECTION:
-            console.log(action.payload)
             return {
                 ...state,
                 channelConnected: action.payload
             }
         case actionTypes.SET_STORAGE_STATE:
-            console.log('setting up', action.payload)
             return {
                 ...state,
                 channel: action.payload.channel,
@@ -49,7 +46,6 @@ const reducer = (state = initialState, action) => {
                 tier: action.payload.tier
             }
         case actionTypes.SET_LAST_CHANGED:
-            console.log('setting last changed')
             return {
                 ...state,
                 lastChanged: action.payload

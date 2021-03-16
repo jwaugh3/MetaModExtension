@@ -32,10 +32,10 @@ export class GiveawayForm extends Component {
 
     updateEntries = async (event) => {
         if(event !== null){event.preventDefault()}
-console.log(this.props.customRewards[this.props.badgeNum].rewardID, this.props.badgeNum)
+// console.log(this.props.customRewards[this.props.badgeNum].rewardID, this.props.badgeNum)
         let entries = await getRewardEntries(this.props.apiEndpoint, this.props.channel, this.props.customRewards[this.props.badgeNum].rewardID)
         this.setState({entryCount: entries.userEntries.length})
-        console.log(entries)
+        // console.log(entries)
     }
 
     deleteCustomRewardOnTwitch = async (badgeNum) => {

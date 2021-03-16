@@ -29,7 +29,7 @@ export class TimeoutForm extends Component {
     }
 
     deleteCustomRewardOnTwitch = async (badgeNum) => {
-        console.log(this.props.channel, this.props.customRewards[badgeNum].rewardID)
+        // console.log(this.props.channel, this.props.customRewards[badgeNum].rewardID)
         await deleteCustomReward(this.props.apiEndpoint, this.props.channel, this.props.customRewards[badgeNum].rewardID).then((res)=>{
             let statusCode = JSON.parse(res.response.statusCode)
             if(statusCode === 204){

@@ -15,7 +15,7 @@ class App extends Component {
   componentDidMount = async () => {
     //window message handler
     window.addEventListener("message", async (event) => {
-      console.log(event.data)
+      // console.log(event.data)
       // if(event.data.substring(0,6) === "mmtkn="){
       //   //handles verification of chrome.storage.sync jwt token 
       //   let token = event.data.split('mmtkn=').pop()

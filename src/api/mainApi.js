@@ -50,7 +50,7 @@ export const getFleamarketbotSettings = async (apiURL, token) => {
 }
 
 export const updateFleamarketbot = async (apiURL, token, settings) => {
-    console.log(settings)
+    // console.log(settings)
     let updatedSettings = new Promise((resolve, reject)=>{
         fetch(apiURL + '/api/updateFleamarketbot/' + token, {
             method: 'POST',
