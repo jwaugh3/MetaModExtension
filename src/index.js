@@ -9,14 +9,12 @@ import thunk from 'redux-thunk';
 //reducers
 import applicationReducer from './store/reducers/application';
 import appsReducer from './store/reducers/apps';
-import fleamarketbotReducer from './store/reducers/fleamarketbot';
 import channelPointsManagerReducer from './store/reducers/channelPointsManager'
 
 
 const rootReducer = combineReducers({
   applicationReducer,
   appsReducer,
-  fleamarketbotReducer,
   channelPointsManagerReducer
 })
 

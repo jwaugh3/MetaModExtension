@@ -1,5 +1,4 @@
 const myApps = [
-    // 'Fleamarketbot',
     'ChannelPointsManager'
 ]
 

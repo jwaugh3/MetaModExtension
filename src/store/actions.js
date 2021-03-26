@@ -10,14 +10,6 @@ export const SET_AVAILABLE_APPS = 'SET_AVAILABLE_APPS'
 export const SET_MY_APPS = 'SET_MY_APPS'
 
 //APPS
-//fleamarketbot.js
-export const SET_MODE_SELECTION = 'SET_MODE_SELECTION'
-export const SET_DELAY = 'SET_DELAY'
-export const SET_TARGET_REQUESTER = 'SET_TARGET_REQUESTER'
-export const SET_CHANNEL_CONNECTION = 'SET_CHANNEL_CONNECTION'
-export const SET_STORAGE_STATE = 'SET_STORAGE_STATE'
-export const SET_LAST_CHANGED = 'SET_LAST_CHANGED'
-
 //channelPointsManager.js
 export const CREATE_REWARD = 'CREATE_REWARD'
 export const DISPLAY_FORM = 'DISPLAY_FORM'

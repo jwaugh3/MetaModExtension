@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "MetaMod - Custom Rewards Manager",
   "description": "A custom channel points manager for Twitch.tv designed to automate and give new accessibility to viewer rewards.",
-  "version": "0.0.0.1",
+  "version": "0.0.0.2",
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
